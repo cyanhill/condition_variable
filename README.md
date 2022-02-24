@@ -1,7 +1,7 @@
 # condition_variable
 
 - condition_variable implementation to fix monotonic_clock. This is header-only, dependency C++11 and POSIX library.
-- There is a problem with `std::condition_variable` in lower versions of gcc, which actually uses `std::chrono::system_clock` instead of `std::chrono::monotonic_clock`. [Bug 41861 (DR887) - [DR 887][C++0x] <condition_variable> does not use monotonic_clock](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=41861)
+- There is a problem with `std::condition_variable` in lower versions of gcc, which actually uses `std::chrono::system_clock` instead of `std::chrono::steady_clock`. [Bug 41861 (DR887) - [DR 887][C++0x] <condition_variable> does not use monotonic_clock](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=41861)
 - Since new versions of gcc cannot be used, `cyan::condition_variable` can only be manually implemented instead of C++11's `std::condition_variable`.
 - This problem is mainly solved by using the POSIX function `pthread_condattr_setclock` to set the attribute of the condition variable to `CLOCK_MONOTONIC`.
 
